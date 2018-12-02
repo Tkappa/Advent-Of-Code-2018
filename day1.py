@@ -1,16 +1,16 @@
-with open('input.txt') as f:
+with open('input1.txt') as f:
     lines = f.readlines()
     amount = 0
     D = dict()
     D[0]= 1
-    hehe =1
+    breakcycle =1
     firsttime = 0 
-    while hehe==1:
+    while breakcycle==1:
         for f in lines:
             amount += int(f)
             if amount in D:
                 print "Part two:" + str(amount)
-                hehe = 2
+                breakcycle = 2
                 break
             else:
                 D[amount]= 1
