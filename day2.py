@@ -1,7 +1,7 @@
 # Counter class used in part on
 from collections import Counter
 
-with open('input2.txt') as f:
+with open('./inputs/input2.txt') as f:
     lines = f.readlines()
     ntwo=0
     nthree=0
@@ -44,7 +44,7 @@ with open('input2.txt') as f:
                  if(line[index] != bline[index]):
                      diff+=1
                  index+=1
-             """    
+             """
              if(diff == 1):
                 common =""
                 lis = zip(line,bline)
@@ -58,7 +58,7 @@ with open('input2.txt') as f:
                         common+=c
                     index = index + 1
                 """
-                print "Part two: " + common
+                print "Part two: " + common.strip()
                 found = 1
                 break
         if (found==1):

@@ -1,4 +1,4 @@
-with open('input3.txt') as f:
+with open('./inputs/input3.txt') as f:
   lines= f.readlines()
   D = dict()
 
