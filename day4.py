@@ -1,44 +1,54 @@
-with open('input.txt') as f:
+with open('./inputs/input4.txt') as f:
   lines = f.readlines()
-  tmp = lines[0].split("[")[1].split("]")[0]
-  lines.sort(key=lambda r: r.split("[")[1].split("]")[0])
-  
+
+  # Sort the array by date
+  lines.sort()
+
   Guards = dict()
   for line in lines:
-    gid = line.split(" ")[3].strip()
-    if(gid[0]=="#"):
-      currentguard= gid.replace("#","")
-      print(currentguard)
-    if(gid=="asleep"):
+    action = line.split(" ")[3].strip()
+    #If it has a hashtag its a guard shift , so it gets the new guard
+    if(action[0]=="#"):
+      currentguard= action.replace("#","")
+    #If the word is asleep , the guard just fell asleep, so i store the time
+    if(action=="asleep"):
       timeasleep= int(line.split(" ")[1].split(":")[1].replace("]",""))
-      print (timeasleep)
-    if(gid=="up"):
+    #If the word is up, the guard has woken up, so I increment the times
+    if(action=="up"):
       timewakeup = int(line.split(" ")[1].split(":")[1].replace("]",""))
-      while(timeasleep<timewakeup):
+      for t in range(timeasleep,timewakeup):
         if currentguard in Guards:
-          if timeasleep in Guards[currentguard]:
-            Guards[currentguard][timeasleep]+=1
+          if t in Guards[currentguard]:
+            Guards[currentguard][t]+=1
           else:
-            Guards[currentguard][timeasleep]=1
+            Guards[currentguard][t]=1
         else:
           Hours= dict()
           Guards[currentguard]= Hours
-        timeasleep+=1
-  
-  mostHours= 0
-  mostMinuteAbs=0
-  for g in Guards:
-    mostMinute = 0
-    totalMinutes = 0
-    mostMinuteAmount =0
-    for n in Guards[g]:
-      totalMinutes+=Guards[g][n]
-      if Guards[g][n] > mostMinuteAmount:
-        mostMinuteAmount = Guards[g][n]
-        mostMinute = n
-    if totalMinutes >mostHours:
-      mostHours=totalMinutes
-      mostMinuteAbs = mostMinute*g
-  print(mostMinuteAbs)
 
 
+  mostMinutes= 0
+  partOneChecksum=0
+
+  #( which guard , which minute, numberoftimesslept)
+  mostminutesleptbyguard=(0,0,0)
+
+  #For all guards
+  for currentguard in Guards:
+    bestMinuteCycle = 0
+    totalMinutesCycle = 0
+    mostMinuteAmountCycle =0
+    #For all minutes they slept
+    for currentminute in Guards[currentguard]:
+        if Guards[currentguard][currentminute] > mostminutesleptbyguard[2]:
+            mostminutesleptbyguard = (currentguard,currentminute,Guards[currentguard][currentminute])
+        totalMinutesCycle+=Guards[currentguard][currentminute]
+        if Guards[currentguard][currentminute] > mostMinuteAmountCycle:
+          mostMinuteAmountCycle = Guards[currentguard][currentminute]
+          bestMinuteCycle = currentminute
+    if totalMinutesCycle >mostMinutes:
+        mostMinutes=totalMinutesCycle
+        partOneChecksum = int(bestMinuteCycle)*int(currentguard)
+
+  print "Part one: "+ str(partOneChecksum)
+  print "Part two: "+ str(int(mostminutesleptbyguard[0])*int(mostminutesleptbyguard[1]))
