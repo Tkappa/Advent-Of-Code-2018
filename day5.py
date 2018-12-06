@@ -1,4 +1,5 @@
 import string
+import time
 
 def calcPolymer(string):
     safe = string[len(string)-1]
@@ -11,9 +12,9 @@ def calcPolymer(string):
             safe = string[n] + safe
     return len(safe)
 
-with open('./inputs/input5.txt') as f:
+with open('./inputs/input5.txt') as f: 
+    start_time = time.time()
     line = f.read().strip()
-
     print "Part one: " + str(calcPolymer(line))
 
     minLen = 50000
@@ -23,3 +24,4 @@ with open('./inputs/input5.txt') as f:
         if amount<minLen:
             minLen= amount
     print "Part two: "+str( minLen)
+    print "Time: "+ str(time.time()-start_time)

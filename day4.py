@@ -1,4 +1,7 @@
+import time
+
 with open('./inputs/input4.txt') as f:
+  start_time = time.time()
   lines = f.readlines()
 
   # Sort the array by date
@@ -52,3 +55,4 @@ with open('./inputs/input4.txt') as f:
 
   print "Part one: "+ str(partOneChecksum)
   print "Part two: "+ str(int(mostminutesleptbyguard[0])*int(mostminutesleptbyguard[1]))
+  print "Time: "+ str(time.time()-start_time)

@@ -1,7 +1,9 @@
 # Counter class used in part on
 from collections import Counter
+import time
 
 with open('./inputs/input2.txt') as f:
+    start_time = time.time()
     lines = f.readlines()
     ntwo=0
     nthree=0
@@ -63,3 +65,4 @@ with open('./inputs/input2.txt') as f:
                 break
         if (found==1):
             break
+    print "Time: "+ str(time.time()-start_time)

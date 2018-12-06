@@ -1,4 +1,6 @@
+import time
 with open('./inputs/input1.txt') as f:
+    start_time = time.time()
     lines = f.readlines()
     amount = 0
     D = dict()
@@ -17,3 +19,4 @@ with open('./inputs/input1.txt') as f:
         if firsttime == 0:
             print "Part one: "+ str(amount)
             firsttime= 1
+    print "Time: "+ str(time.time()-start_time)

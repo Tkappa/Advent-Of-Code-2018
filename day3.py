@@ -1,4 +1,6 @@
+import time
 with open('./inputs/input3.txt') as f:
+  start_time = time.time()
   lines= f.readlines()
   D = dict()
 
@@ -55,3 +57,4 @@ with open('./inputs/input3.txt') as f:
     if(stillone==1 and entered ==1):
         print "Part two: "+ line.split("@")[0].replace('#','')
         break
+  print "Time: "+ str(time.time()-start_time)
