@@ -6,6 +6,7 @@ def calcPolymer(string):
     string = string[:len(string)-1]
     rangel = len(string)
     for n in reversed(range(0,rangel)):
+        #TODO: optimize with str.swapcase()
         if(string[n].lower()==safe[0].lower() and ((string[n].islower() and safe[0].isupper())or (string[n].isupper() and safe[0].islower()))):
             safe = safe[1:]
         else:
