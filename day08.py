@@ -49,7 +49,7 @@ with open ("./inputs/input8.txt") as f:
     numbers= f.read().split(" ")
 
     index = 0
-    head = [[-1,-1],[],[],0]
+    head = [[-1,-1],[],0]
     maxsum=0
 
     retval=readNode(head,index,numbers,maxsum)
