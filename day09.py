@@ -1,57 +1,6 @@
 import time
 from collections import deque,defaultdict
 
-"""
-# Old solution made before discovering "Deque" and defaultdict
-class Node:
-    def __init__(self,dataval=None,prevval=None,nextval=None):
-        self.dataval= dataval
-        self.prevval= prevval
-        self.nextval= nextval
-    def insertAfter(self,dataval=None):
-        nnode = Node(dataval,self,self.nextval)
-        self.nextval.prevval=nnode
-        self.nextval= nnode
-        return nnode
-    def deleteSeven(self):
-        node = self
-        for n in range(7):
-            node= node.prevval
-        retnode= node.nextval
-        node.prevval.nextval= node.nextval
-        node.nextval.prevval= node.prevval
-        return (retnode,node.dataval)
-    
-        
-
-def playGame(players,lastmarble):
-    currentplayer=1
-    playerscores= dict()
-    head = Node(0)
-    head.nextval= head
-    head.prevval= head
-
-    currentmarble=head
-    for n in range(1,lastmarble+1):
-        if( n>22 and n%23 == 0):
-            score = n
-            retval = currentmarble.deleteSeven()
-            score+= retval[1]
-            currentmarble = retval[0]
-            if currentplayer in playerscores:
-                playerscores[currentplayer]+=score
-            else:
-                playerscores[currentplayer]=score
-        else:
-            #print currentmarble.dataval
-            currentmarble= currentmarble.nextval.insertAfter(n)
-        
-        currentplayer = ((currentplayer+1)%(players+1))
-        if currentplayer==0:
-            currentplayer=1
-    return playerscores
-"""
-
 def playGame(players,lastmarble):
     playerscores= defaultdict(int)
     circle = deque([0])
